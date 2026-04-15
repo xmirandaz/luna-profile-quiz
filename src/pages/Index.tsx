@@ -27,7 +27,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen quiz-gradient flex flex-col items-center">
-      <div className="w-full max-w-[480px] px-4 pb-8">
+      <div className="w-full max-w-[480px] px-4 pb-8 flex flex-col min-h-screen">
         <QuizLogo />
         {step > 1 && step <= 16 && (
           <div className="mb-6">
@@ -35,7 +35,7 @@ const Index = () => {
           </div>
         )}
 
-        <div key={animKey} className="animate-slide-in">
+        <div key={animKey} className="animate-slide-in flex-1">
           {step === 1 && <Step1 onNext={goNext} />}
           {step === 2 && <Step2 userName={userName} setUserName={setUserName} onNext={goNext} />}
           {step === 3 && <Step3 selected={selections[3]} onSelect={(v) => selectOption(3, v)} />}
@@ -52,8 +52,13 @@ const Index = () => {
           {step === 14 && <Step14 selected={selections[14]} onSelect={(v) => selectOption(14, v)} />}
           {step === 15 && <Step15 selected={selections[15]} onSelect={(v) => selectOption(15, v)} />}
           {step === 16 && <Step16 selected={selections[16]} onSelect={(v) => selectOption(16, v)} />}
-          {step === 17 && <Step17 userName={userName} course={course} />}
+          {step === 17 && <Step17 userName={userName.trim().replace(/\s+/g, ' ')} course={course.trim().replace(/\s+/g, ' ')} />}
         </div>
+
+        <footer className="text-muted-foreground text-xs text-center mt-8 pb-4">
+          <p>2026 © Studio Luna</p>
+          <p>Todos os direitos reservados</p>
+        </footer>
       </div>
     </div>
   );
@@ -404,7 +409,6 @@ const Step17 = ({ userName, course }: { userName: string; course: string }) => {
   const [progress, setProgress] = useState(0);
   const [message, setMessage] = useState("");
   const [btnEnabled, setBtnEnabled] = useState(false);
-  const [secondsLeft, setSecondsLeft] = useState(60);
 
   useEffect(() => {
     const start = Date.now();
@@ -429,17 +433,10 @@ const Step17 = ({ userName, course }: { userName: string; course: string }) => {
 
   useEffect(() => {
     if (!loading) {
-      const timer = setInterval(() => {
-        setSecondsLeft((s) => {
-          if (s <= 1) {
-            clearInterval(timer);
-            setBtnEnabled(true);
-            return 0;
-          }
-          return s - 1;
-        });
-      }, 1000);
-      return () => clearInterval(timer);
+      const timer = setTimeout(() => {
+        setBtnEnabled(true);
+      }, 60000);
+      return () => clearTimeout(timer);
     }
   }, [loading]);
 
@@ -447,6 +444,12 @@ const Step17 = ({ userName, course }: { userName: string; course: string }) => {
     return (
       <div className="flex flex-col items-center gap-6 py-12">
         <p className="text-foreground text-sm font-medium animate-fade-in text-center">{message}</p>
+        <div className="w-full h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.1)" }}>
+          <div
+            className="h-full rounded-full transition-all duration-100 ease-out"
+            style={{ width: `${progress}%`, background: "var(--quiz-cta)" }}
+          />
+        </div>
       </div>
     );
   }
@@ -457,21 +460,24 @@ const Step17 = ({ userName, course }: { userName: string; course: string }) => {
   return (
     <div className="flex flex-col gap-5 animate-fade-in text-center">
       <h2 className="text-foreground text-xl font-bold leading-snug text-center">
-        Parabéns, <span className="glow-text">{userName}</span>! Seu perfil foi APROVADO!
+        Parabéns, <span className="glow-text">{userName}</span>!<br />
+        Seu perfil foi <span className="glow-text">APROVADO</span>!
       </h2>
 
-      <p className="text-foreground text-sm leading-relaxed">
-        <span className="glow-text">{userName}</span>, suas preferências, juntamente ao seu perfil atendem
-        aos requisitos das 2 VAGAS que temos disponíveis. Liberamos nossa fila de produção e reservamos{" "}
-        <span className="glow-text">1 VAGA EXCLUSIVA</span> para o seu ensaio de{" "}
+      <p className="text-foreground text-sm leading-relaxed text-center">
+        Suas preferências, juntamente ao seu perfil, atendem aos requisitos das{" "}
+        <span className="glow-text">2 VAGAS</span> que temos disponíveis. Liberamos nossa fila de produção e reservamos{" "}
+        <span className="glow-text">1 VAGA EXCLUSIVA</span> para o seu ensaio de formatura do curso de{" "}
         <span className="glow-text">{course}</span>.
       </p>
-      <p className="text-foreground text-sm leading-relaxed">
-        ⚠️ ATENÇÃO: Sua vaga na fila de produção está garantida por apenas 1 HORA. Como logo haverá outras
-        pessoas com acesso a esse teste, reivindique sua vaga agora para não ficar de fora!
+      <p className="text-foreground text-sm leading-relaxed text-center">
+        ⚠️ <span className="glow-text">ATENÇÃO</span>: Sua vaga na fila de produção está garantida por apenas{" "}
+        <span className="glow-text">1 HORA</span>. Como logo haverá outras pessoas com acesso a esse teste, reivindique sua vaga agora para não ficar de fora!
       </p>
 
-      <p className="text-foreground font-bold text-base text-center">ASSISTA O VÍDEO PARA LIBERAR A SUA VAGA 👇</p>
+      <p className="text-foreground font-bold text-base text-center">
+        Assista o vídeo abaixo para liberar o WhatsApp de um dos nossos especialistas 👇
+      </p>
 
       <iframe
         src="https://www.youtube.com/embed/HEHYzTP6Cbc"
@@ -488,7 +494,7 @@ const Step17 = ({ userName, course }: { userName: string; course: string }) => {
           rel="noopener noreferrer"
           className="w-full py-4 rounded-xl text-base text-center quiz-btn-green block transition-all duration-200"
         >
-          REIVINDICAR MINHA VAGA NO WHATSAPP!
+          RESGATAR MEU ENSAIO!
         </a>
       ) : (
         <button
