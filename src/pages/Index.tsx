@@ -29,7 +29,7 @@ const Index = () => {
     <div className="min-h-screen quiz-gradient flex flex-col items-center">
       <div className="w-full max-w-[480px] px-4 pb-8">
         <QuizLogo />
-        {step > 1 && step <= 17 && (
+        {step > 1 && step <= 16 && (
           <div className="mb-6">
             <ProgressBar current={Math.min(step - 1, TOTAL_STEPS)} total={TOTAL_STEPS} />
           </div>
@@ -447,12 +447,6 @@ const Step17 = ({ userName, course }: { userName: string; course: string }) => {
     return (
       <div className="flex flex-col items-center gap-6 py-12">
         <p className="text-foreground text-sm font-medium animate-fade-in text-center">{message}</p>
-        <div className="w-full h-3 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.1)" }}>
-          <div
-            className="h-full rounded-full transition-all duration-100"
-            style={{ width: `${progress}%`, background: "var(--quiz-cta)" }}
-          />
-        </div>
       </div>
     );
   }
@@ -461,20 +455,10 @@ const Step17 = ({ userName, course }: { userName: string; course: string }) => {
     "https://wa.me/5511980783213?text=Ol%C3%A1!%20Acabei%20de%20fazer%20a%20avalia%C3%A7%C3%A3o%20do%20Studio%20Luna%20e%20meu%20perfil%20foi%20APROVADO!%20%F0%9F%8E%89%20Quero%20reivindicar%20minha%20vaga%20para%20o%20ensaio.";
 
   return (
-    <div className="flex flex-col gap-5 animate-fade-in">
-      <h2 className="text-foreground text-xl font-bold leading-snug">
-        PARABÉNS, <span className="glow-text">{userName}</span>! Seu perfil foi APROVADO. 🎉
+    <div className="flex flex-col gap-5 animate-fade-in text-center">
+      <h2 className="text-foreground text-xl font-bold leading-snug text-center">
+        Parabéns, <span className="glow-text">{userName}</span>! Seu perfil foi APROVADO!
       </h2>
-
-      <p className="text-foreground font-bold text-base">ASSISTA O VÍDEO PARA LIBERAR A SUA VAGA 👇</p>
-
-      <iframe
-        src="https://www.youtube.com/embed/HEHYzTP6Cbc"
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-        style={{ width: "100%", aspectRatio: "9/16", borderRadius: "12px", marginTop: "4px" }}
-      />
 
       <p className="text-foreground text-sm leading-relaxed">
         <span className="glow-text">{userName}</span>, suas preferências, juntamente ao seu perfil atendem
@@ -486,6 +470,16 @@ const Step17 = ({ userName, course }: { userName: string; course: string }) => {
         ⚠️ ATENÇÃO: Sua vaga na fila de produção está garantida por apenas 1 HORA. Como logo haverá outras
         pessoas com acesso a esse teste, reivindique sua vaga agora para não ficar de fora!
       </p>
+
+      <p className="text-foreground font-bold text-base text-center">ASSISTA O VÍDEO PARA LIBERAR A SUA VAGA 👇</p>
+
+      <iframe
+        src="https://www.youtube.com/embed/HEHYzTP6Cbc"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+        style={{ width: "100%", aspectRatio: "9/16", borderRadius: "12px", marginTop: "4px" }}
+      />
 
       {btnEnabled ? (
         <a
