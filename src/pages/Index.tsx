@@ -82,16 +82,16 @@ const CTAButton = ({
 );
 
 const StepTitle = ({ children }: { children: React.ReactNode }) => (
-  <h2 className="text-foreground text-lg font-bold mb-4 leading-snug">{children}</h2>
+  <h2 className="text-foreground text-lg font-bold mb-4 leading-snug text-center">{children}</h2>
 );
 
 /* Step 1 */
 const Step1 = ({ onNext }: { onNext: () => void }) => (
   <div className="flex flex-col gap-5">
-    <h1 className="text-foreground text-xl font-bold leading-tight">
-      Análise de Perfil e Disponibilidade - Studio Luna
+    <h1 className="text-foreground text-xl font-bold leading-tight text-center">
+      Análise de Perfil e Disponibilidade
     </h1>
-    <p className="text-muted-foreground text-sm leading-relaxed">
+    <p className="text-muted-foreground text-sm leading-relaxed text-center">
       Por conta da demanda e para mantermos o nível de qualidade e cuidado com os ensaios produzidos,
       abrimos apenas 17 vagas para novos formandos por semana. Preencha o teste abaixo para
       verificarmos o seu perfil e quantas vagas disponíveis temos para o seu ensaio de formatura.
@@ -501,7 +501,7 @@ const Step17 = ({ userName, course }: { userName: string; course: string }) => {
           disabled
           className="w-full py-4 rounded-xl text-base quiz-btn transition-all duration-200"
         >
-          ASSISTA O VÍDEO PARA LIBERAR A SUA VAGA ({secondsLeft}s)
+          ASSISTA O VÍDEO PARA LIBERAR A SUA VAGA
         </button>
       )}
     </div>
