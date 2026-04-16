@@ -219,7 +219,7 @@ const Step7 = ({ onNext }: { onNext: () => void }) => (
         "https://i.ibb.co/mVScv8Q8/1.webp",
         "https://i.ibb.co/dwsM6j87/2.webp",
         "https://i.ibb.co/p6mKYfcR/3.webp",
-        "https://i.ibb.co/dwsM6j87/2.webp",
+        "https://i.ibb.co/yjBjYmn/4.webp",
       ].map((src, i) => (
         <div key={i} className="rounded-xl overflow-hidden" style={{ aspectRatio: "3/4" }}>
           <img src={src} alt={`Ensaio ${i + 1}`} className="w-full h-full object-cover" />
