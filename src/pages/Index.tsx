@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import confetti from "canvas-confetti";
 import QuizLogo from "@/components/QuizLogo";
 import ProgressBar from "@/components/ProgressBar";
 import OptionCard from "@/components/OptionCard";
@@ -434,6 +435,10 @@ const Step17 = ({ userName, course }: { userName: string; course: string }) => {
 
   useEffect(() => {
     if (!loading) {
+      // Fire confetti
+      confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
+      setTimeout(() => confetti({ particleCount: 100, spread: 100, origin: { y: 0.5 } }), 300);
+
       const timer = setTimeout(() => {
         setBtnEnabled(true);
       }, 120000);
