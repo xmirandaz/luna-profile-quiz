@@ -441,7 +441,7 @@ const Step17 = ({ userName, course }: { userName: string; course: string }) => {
 
       const timer = setTimeout(() => {
         setBtnEnabled(true);
-      }, 120000);
+      }, 90000);
       return () => clearTimeout(timer);
     }
   }, [loading]);
