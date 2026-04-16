@@ -98,7 +98,8 @@ const Step1 = ({ onNext }: { onNext: () => void }) => (
     </h1>
     <p className="text-muted-foreground text-sm leading-relaxed text-center">
       Por conta da demanda e para mantermos o nível de qualidade e cuidado com os ensaios produzidos,
-      abrimos apenas 17 vagas para novos formandos por semana. Preencha o teste abaixo para
+      {" "}<span className="glow-text">ABRIMOS APENAS 17 VAGAS</span>{" "}
+      para novos formandos por semana. Preencha o teste abaixo para
       verificarmos o seu perfil e quantas vagas disponíveis temos para o seu ensaio de formatura.
     </p>
     <div className="rounded-xl overflow-hidden" style={{ aspectRatio: "3/4" }}>
@@ -435,7 +436,7 @@ const Step17 = ({ userName, course }: { userName: string; course: string }) => {
     if (!loading) {
       const timer = setTimeout(() => {
         setBtnEnabled(true);
-      }, 60000);
+      }, 120000);
       return () => clearTimeout(timer);
     }
   }, [loading]);
@@ -501,7 +502,7 @@ const Step17 = ({ userName, course }: { userName: string; course: string }) => {
           disabled
           className="w-full py-4 rounded-xl text-base quiz-btn transition-all duration-200"
         >
-          ASSISTA O VÍDEO PARA LIBERAR A SUA VAGA
+          ASSISTA PARA LIBERAR SUA VAGA
         </button>
       )}
     </div>
